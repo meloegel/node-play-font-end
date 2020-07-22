@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { NavLink } from 'react-router-dom'
 import './App.css';
 
-import Questions from './components/Questions'
+import QuestionsList from './components/QuestionsList'
 import AddQuestion from './components/AddQuestion'
 import EditQuestion from './components/EditQuestion'
 import UserProfile from './components/UserProfile'
@@ -22,7 +22,7 @@ function App() {
   const [questionList, setQuestionList] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState({
-    userId: window.localStorage.getItem('userId')
+    userId: window.localStorage.getItem('user_id')
   })
 
 
@@ -47,7 +47,7 @@ function App() {
               <Switch>
                 <Route exact path='/' component={SignUp} />
                 <Route path='/login' component={Login} />
-                <PrivateRoute path='/questions' component={Questions} />
+                <PrivateRoute path='/questions' component={QuestionsList} />
                 <PrivateRoute path='/add-question' component={AddQuestion} />
                 <PrivateRoute path='/edit-question/:id' component={EditQuestion} />
                 <PrivateRoute path='/account' component={UserProfile} />

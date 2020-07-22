@@ -4,8 +4,8 @@ export const axiosWithAuth = () => {
     const token = localStorage.getItem("token");
     return axios.create({
         headers: {
-            Authorization: token,
+            authorization: token,
         },
-        baseURL: "https://node-play.herokuapp.com/",
+        baseURL: "https://cors-anywhere.herokuapp.com/https://node-play.herokuapp.com/",
     });
 };

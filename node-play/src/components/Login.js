@@ -52,6 +52,8 @@ export default function Login() {
             .then((response) => {
                 console.log(response.data, "resdata");
                 localStorage.setItem("token", response.data.token);
+                localStorage.setItem('userId', response.data.user_id)
+                return evt.history.push('/questions');
             })
             .catch((error) => {
                 console.log(error);
