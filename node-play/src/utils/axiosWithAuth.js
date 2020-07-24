@@ -9,5 +9,3 @@ export const axiosWithAuth = () => {
         baseURL: "https://node-play.herokuapp.com",
     });
 };
-
-
