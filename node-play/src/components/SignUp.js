@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import signUpSchema from "../validation/signUpSchema";
-import axios from "axios";
+import { axiosWithAuth } from '../utils/axiosWithAuth'
 import * as yup from "yup";
 
 const initialFormValues = {
@@ -49,9 +49,9 @@ export default function Registration() {
 
     const onSubmit = (evt) => {
         evt.preventDefault();
-        axios
+        axiosWithAuth()
             .post(
-                "https://dashboard.heroku.com/apps/node-play/auth/register",
+                "/auth/register",
                 formValues
             )
             .then((res) => {

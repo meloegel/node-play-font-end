@@ -6,6 +6,8 @@ export const axiosWithAuth = () => {
         headers: {
             Authorization: token,
         },
-        baseURL: "https://cors-anywhere.herokuapp.com/https://node-play.herokuapp.com/",
+        baseURL: "https://node-play.herokuapp.com",
     });
 };
+
+
