@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import signUpSchema from "../validation/signUpSchema";
 import { axiosWithAuth } from '../utils/axiosWithAuth'
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 
 const initialFormValues = {
@@ -17,6 +18,7 @@ const initialDisabled = true;
 const initialUsers = [];
 
 export default function Registration() {
+    const { push } = useHistory();
     const [users, setUser] = useState(initialUsers);
     const [formValues, setFormValues] = useState(initialFormValues);
     const [formErrors, setFormErrors] = useState(initialFormErrors);
@@ -51,11 +53,12 @@ export default function Registration() {
         evt.preventDefault();
         axiosWithAuth()
             .post(
-                "/auth/register",
+                "/api/auth/register",
                 formValues
             )
             .then((res) => {
                 setUser([...users, res.data]);
+                push('/login')
             })
             .catch((err) => {
                 console.log(err);

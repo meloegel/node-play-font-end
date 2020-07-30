@@ -7,20 +7,21 @@ import UserContext from '../contexts/UserContext'
 
 const Questions = () => {
     const { push } = useHistory();
-    const { setQuestions } = useContext(QuestionContext)
+    const { setQuestionList } = useContext(QuestionContext)
     const { userId } = useContext(UserContext)
+    console.log(userId)
 
     const getQuestions = () => {
         axiosWithAuth()
-            .get(`api/questions`)
-            .then(res => setQuestions(res.data))
+            .get(`api/auth/questions`)
+            .then(res => setQuestionList(res.data))
             .catch(err => console.log(err))
     };
 
-    const getMyQuestions = (userId) => {
+    const getMyQuestions = () => {
         axiosWithAuth()
-            .get(`api/questions/:id`)
-            .then(res => setQuestions(res.data))
+            .get(`api/auth/questions/${userId.userId}`)
+            .then(res => setQuestionList(res.data))
             .catch(err => console.log(err))
     }
 

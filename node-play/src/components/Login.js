@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 import loginSchema from "../validation/loginSchema";
 import * as yup from "yup";
@@ -16,6 +17,7 @@ const initialDisabled = true;
 
 
 export default function Login() {
+    const { push } = useHistory();
     const [formValues, setFormValues] = useState(initialFormValues);
     const [formErrors, setFormErrors] = useState(initialFormErrors);
     const [disabled, setDisabled] = useState(initialDisabled);
@@ -48,12 +50,12 @@ export default function Login() {
     const onSubmit = (evt) => {
         evt.preventDefault();
         axiosWithAuth()
-            .post(`/auth/login`, formValues)
+            .post(`/api/auth/login`, formValues)
             .then((response) => {
-                console.log(response.data, "resdata");
+                console.log(response.data.user.id, "resdata");
                 localStorage.setItem("token", response.data.token);
-                localStorage.setItem('userId', response.data.user_id)
-                return evt.history.push('/questions');
+                localStorage.setItem('userId', response.data.user.id)
+                push('/questions')
             })
             .catch((error) => {
                 console.log(error);

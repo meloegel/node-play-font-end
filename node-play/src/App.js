@@ -22,7 +22,7 @@ function App() {
   const [questionList, setQuestionList] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState({
-    userId: window.localStorage.getItem('user_id')
+    userId: window.localStorage.getItem('userId')
   })
 
 

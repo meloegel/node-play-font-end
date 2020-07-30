@@ -4,7 +4,6 @@ import { axiosWithAuth } from '../utils/axiosWithAuth'
 import UserContext from '../contexts/UserContext'
 
 const initialDetails = {
-    id: '',
     username: '',
     email: ''
 }
@@ -13,10 +12,11 @@ const UserProfile = () => {
     const { push } = useHistory();
     const [details, setDetails] = useState(initialDetails);
     const { userId } = useContext(UserContext)
+    console.log(userId)
 
     useEffect(() => {
         axiosWithAuth()
-            .get(`/api/users/${userId.userId}`)
+            .get(`/api/auth/users/${userId.userId}`)
             .then(res => {
                 console.log(res)
                 setDetails(res.data);
@@ -33,7 +33,7 @@ const UserProfile = () => {
 
     const handleSubmit = e => {
         axiosWithAuth()
-            .put(`/api/users/${userId.userId}`, details)
+            .put(`/api/auth/users/${userId.userId}`, details)
             .then(res => {
                 console.log(res)
                 push(`/account`)
